@@ -1,6 +1,7 @@
 package codewars
 
 import (
+	"fmt"
 	"math"
 	"sort"
 	"strconv"
@@ -395,4 +396,17 @@ func Multiple3And5(number int) int {
 
 	return sum
 
+}
+
+func CreatePhoneNumber(numbers [10]uint) string {
+	return fmt.Sprintf("(%s) %s-%s", change(numbers[0:3]), change(numbers[3:6]), change(numbers[6:10]))
+}
+
+func change(numbers []uint) string {
+	var b strings.Builder
+	for _, n := range numbers {
+		fmt.Fprint(&b, n)
+	}
+
+	return b.String()
 }
