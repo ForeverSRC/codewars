@@ -410,3 +410,53 @@ func change(numbers []uint) string {
 
 	return b.String()
 }
+
+func FindOdd(seq []int) int {
+	n := len(seq)
+	h := make(map[int]bool, n)
+	for _, v := range seq {
+		b := h[v]
+		h[v] = !b
+	}
+
+	ans := 0
+	for k, v := range h {
+		if v {
+			ans = k
+			break
+		}
+	}
+
+	return ans
+}
+
+func SpinWords(str string) string {
+	strs := strings.Split(str, " ")
+	for k, v := range strs {
+		if len(v) >= 5 {
+			strs[k] = doSpin(v)
+		}
+	}
+
+	return strings.Join(strs, " ")
+}
+
+func doSpin(str string) string {
+	strArr := []rune(str)
+	for i := 0; i < len(strArr)/2; i++ {
+		strArr[len(strArr)-1-i], strArr[i] = strArr[i], strArr[len(strArr)-1-i]
+	}
+	return string(strArr)
+}
+
+func CountBits(n uint) int {
+	var i uint = 1
+	ans := 0
+	for ; i <= n; i *= 2 {
+		if n&i == i {
+			ans++
+		}
+	}
+
+	return ans
+}
